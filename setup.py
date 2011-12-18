@@ -35,6 +35,7 @@ setup(
         'Flask',
         'PyYAML',
         'Markdown',
+        'blinker',
     ],
     classifiers=[
         'Environment :: Web Environment',

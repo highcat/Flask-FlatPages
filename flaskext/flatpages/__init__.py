@@ -19,7 +19,11 @@ import yaml
 import markdown
 import werkzeug
 import flask
+from blinker import signal
 
+
+flatpages_reloaded = signal('flatpages-reloaded')
+print "signal, ", flatpages_reloaded
 
 def pygmented_markdown(text):
     """Render Markdown text to HTML. Uses the `Codehilite`_ extension
@@ -133,8 +137,10 @@ class FlatPages(object):
             # This will "unshadow" the cached_property.
             # The property will be re-executed on next access.
             del self.__dict__['_pages']
+            flatpages_reloaded.send()
         except KeyError:
             pass
+        
 
     def __iter__(self):
         """Iterate on all :class:`Page` objects."""
