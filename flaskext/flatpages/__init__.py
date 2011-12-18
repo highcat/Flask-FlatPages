@@ -186,7 +186,7 @@ class FlatPages(object):
                 full_name = os.path.join(directory, name)
                 if os.path.isdir(full_name):
                     _walk(full_name, path_prefix + (name,))
-                elif name.endswith(extension):
+                elif name.endswith(extension) and not name.startswith('.'):
                     name_without_extension = name[:-len(extension)]
                     path = u'/'.join(path_prefix + (name_without_extension,))
                     pages[path] = self._load_file(path, full_name)
