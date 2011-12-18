@@ -23,7 +23,6 @@ from blinker import signal
 
 
 flatpages_reloaded = signal('flatpages-reloaded')
-print "signal, ", flatpages_reloaded
 
 def pygmented_markdown(text):
     """Render Markdown text to HTML. Uses the `Codehilite`_ extension
@@ -140,7 +139,6 @@ class FlatPages(object):
             flatpages_reloaded.send()
         except KeyError:
             pass
-        
 
     def __iter__(self):
         """Iterate on all :class:`Page` objects."""
