@@ -24,7 +24,7 @@ from blinker import signal
 
 flatpages_reloaded = signal('flatpages-reloaded')
 
-def pygmented_markdown(text):
+def pygmented_markdown(text, page):
     """Render Markdown text to HTML. Uses the `Codehilite`_ extension
     if `Pygments`_ is available.
 
@@ -72,7 +72,7 @@ class Page(object):
     def html(self):
         """The content of the page, rendered as HTML by the configured renderer.
         """
-        return self.html_renderer(self.body)
+        return self.html_renderer(self.body, page=self)
 
     def __html__(self):
         """In a template, ``{{ page }}`` is equivalent to
